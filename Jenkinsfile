@@ -18,10 +18,10 @@ pipeline {
                 }
             }
         }
-        post {
-            always {
-                junit 'build/test-results/test/TEST-*.xml'
-            }
+    }
+    post {
+        always {
+            junit 'build/test-results/test/TEST-*.xml'
         }
     }
 }
