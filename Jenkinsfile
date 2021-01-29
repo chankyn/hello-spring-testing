@@ -2,9 +2,6 @@
 pipeline {
     agent any
   
-    tools { 
-        jdk 'OpenJDK-15.0.2' 
-    }
     stages {
         
         stage('Build') {
