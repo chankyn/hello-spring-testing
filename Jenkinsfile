@@ -20,12 +20,13 @@ pipeline {
         stage('Test') {
             steps {
                 withGradle {
-                    sh './gradlew pitest'
+                    sh './gradlew clean test'
                 }
             }
             post {
                 always {
-                    pitmutation mutationStatsFile: ''
+                    junit 'build/test-results/test/TEST-*.xml'
+                    jacoco(execPattern: 'build/jacoco/*.exec')
                 }
             }
         }
