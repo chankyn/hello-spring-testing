@@ -30,7 +30,7 @@ pipeline {
                 }
             }
         }
-        stage('PMD') {
+        stage('QA') {
             steps {
                 withGradle {
                     sh './gradlew check'
@@ -38,7 +38,12 @@ pipeline {
             }
             post {
                 always {
-                    recordIssues(tools: [pmdParser(pattern: 'build/reports/pmd/*.xml')])
+                    recordIssues(
+                        tools: [
+                            pmdParser(pattern: 'build/reports/pmd/*.xml')
+                            recordIssues(tools: [spotBugs(pattern: 'build/reports/spotbugs/*.xml', useRankAsPriority: true)])
+                        ]
+                    )
                 }
             }
         }

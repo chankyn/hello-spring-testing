@@ -3,6 +3,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 	id 'pmd'
+	id 'com.github.spotbugs' version '4.2.1'
 }	
 
 group = 'com.example'
@@ -17,6 +18,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.testng:testng:7.1.0'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	
 }
 
 test {
@@ -24,5 +26,8 @@ test {
 }
 pmd {
     ignoreFailures = true
+}
+spotbugs {
+	ignoreFailures = true
 }
 
