@@ -35,6 +35,11 @@ pipeline {
                 withGradle {
                     sh './gradlew check'
                 }
+                withSonarQubeEnv(credentialsId: '36e0e707-fb68-46ce-a4c2-45ac89328771',installationName: 'local') {
+                    withGradle {
+                        sh './gradlew sonarqube'
+                    }
+                }
             }
             post {
                 always {
@@ -44,15 +49,6 @@ pipeline {
                             spotBugs(pattern: 'build/reports/spotbugs/*.xml', useRankAsPriority: true)
                         ]
                     )
-                }
-            }
-        }
-        stage('sonar') {
-            steps {
-                configFileProvider([configFile(fileId: 'hello-sonar-gradle.properties', targetLocation: 'gradle.properties')]) {
-                    withGradle {
-                        sh './gradlew sonarqube'
-                    }
                 }
             }
         }
