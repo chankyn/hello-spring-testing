@@ -52,5 +52,17 @@ pipeline {
                 }
             }
         }
+        stage('Security') {
+            steps {
+                withGradle {
+                    sh './gradlew dependencyCheckAnalyze'
+                }
+            }
+            post {
+                always {
+                    dependencyCheckPublisher pattern: 'build/reports/dependency-check-report.xml'
+                }
+            }
+        }
     }
 }
