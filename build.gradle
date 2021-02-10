@@ -50,7 +50,8 @@ publishing {
 		maven {
 			url "http://localhost:9082/repository/snapshots"
 			credentials {
-				System.getenv("archiva")
+				username = System.getenv("archiva_user")
+				password = System.getenv("archiva_pass")
 			}
 		}
 	}
