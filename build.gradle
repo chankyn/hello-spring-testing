@@ -48,10 +48,10 @@ publishing {
 	}
 	repositories {
 		maven {
-			url "http://localhost:9082/repository/snapshots"
+			url "http://localhost:9084/repository/maven-snapshots/"
 			credentials {
-				username = System.getenv("archiva_user")
-				password = System.getenv("archiva_pass")
+				username = System.getenv("sonatype_nexus_user")
+				password = System.getenv("sonatype_nexus_pass")
 			}
 		}
 	}
